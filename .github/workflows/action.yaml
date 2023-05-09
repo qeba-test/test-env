@@ -14,14 +14,15 @@ jobs:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
+        
       - name: Set APP_ENV variable
         if: steps.branch-name.outputs.current_branch == 'main'
         run: |
-          echo "export APP_ENV=${{ vars.APP_ENV }}" >> $GITHUB_ENV
+          echo "export APP_ENV=${{ env.APP_ENV }}" >> $GITHUB_ENV
       - name: Set APP_ENV variable
         if: steps.branch-name.outputs.current_branch == 'uat'
         run: |
-          echo "export APP_ENV=${{ vars.APP_ENV }}" >> $GITHUB_ENV
+          echo "export APP_ENV=${{ env.APP_ENV }}" >> $GITHUB_ENV
       
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
