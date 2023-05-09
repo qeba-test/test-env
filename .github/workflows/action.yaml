@@ -6,9 +6,10 @@ on:
       
       
 jobs:
-  hello_world_job:
+  test_deploy_env:
     runs-on: ubuntu-latest
     name: Testing Env value
+    environment: production
     steps:
       - name: Hello world action step
         id: hello
