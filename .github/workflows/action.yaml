@@ -15,7 +15,7 @@ jobs:
       
       - name: Get Environment var value
         run: |
-          echo "APP_ENV_value : $APP_ENV"
+          echo "APP_ENV_value : $env.APP_ENV"
      
       - name: Get variables value
         run: |
@@ -29,8 +29,8 @@ jobs:
           REF_NAME_UPPER=$(echo "${{ github.ref_name }}" | awk '{print toupper($0)}')
           echo "The current branch is ${{ github.ref_name }} and capital one is $REF_NAME_UPPER"
           echo "REF_NAME_UPPER=$REF_NAME_UPPER" >> $GITHUB_ENV
-          echo "{ref_name_upper}={$REF_NAME_UPPER}" >> $GITHUB_OUTPUT
+        
      
       - name: Use REF_NAME_UPPER
         run: |
-          echo "The capital branch name is ${{ steps.set_ref_name_upper.outputs.ref_name_upper }}"
+          echo "The capital branch name is ${{ env.REF_NAME_UPPER }}"
