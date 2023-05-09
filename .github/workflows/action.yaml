@@ -4,16 +4,14 @@ on:
       - main
       - uat
       
-      
 jobs:   
   test_deploy_env:
     runs-on: ubuntu-latest
     name: Testing Env value
     environment: staging
-       
     steps:
       - name: Checkout branch
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
       - name: Get Environment var value
         run: |
