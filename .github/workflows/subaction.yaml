@@ -12,9 +12,9 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-
+    environment: ${{ inputs.environment }}
     steps:
     - name: display variable from main 
-      run : |
-      echo "APP_ENV"
+      run: |
+      echo "Running second workflow.."
       

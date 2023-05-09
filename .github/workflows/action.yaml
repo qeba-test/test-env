@@ -35,6 +35,7 @@ jobs:
           echo "The capital branch name is ${{ env.REF_NAME_UPPER }}"
 
   deploy_dev:
-    - name: Deploy to Dev
-      environment: dev
-      uses: ./.github/workflows/subaction.yaml
+    uses: ./.github/workflows/subaction.yaml
+    with: 
+     environment: dev
+     
