@@ -16,23 +16,10 @@ jobs:
         with:
           who-to-greet: 'Mona the Octocat'
       
-      - name: Set Environment
+      - name: Get Environment var value
         run: |
-          case $GITHUB_REF in
-            main)
-              echo "GITHUB_ENV=production" >> $GITHUB_ENV
-              ;;
-            uat)
-              echo "GITHUB_ENV=staging" >> $GITHUB_ENV
-              ;;
-          esac
-      - run: |
-          echo "The environment is $GITHUB_ENV"
-          
-          
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-        
+         echo "APP_ENV : ${{ vars.APP_ENV }}"
+     
       - name: get variables value
         run: |
           echo "APP_ENV : $APP_ENV"
