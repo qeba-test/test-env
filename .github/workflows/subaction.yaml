@@ -1,0 +1,20 @@
+name: Deploy Template
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: environment to deploy to
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: display variable from main 
+      run : |
+      echo "APP_ENV"
+      
