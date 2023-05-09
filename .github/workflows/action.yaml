@@ -9,7 +9,7 @@ jobs:
   test_deploy_env:
     runs-on: ubuntu-latest
     name: Testing Env value
-    environment: production
+    environment: staging
     steps:
       - name: Hello world action step
         id: hello
@@ -23,6 +23,6 @@ jobs:
      
       - name: get variables value
         run: |
-          echo "APP_ENV : $APP_ENV"
+          echo "APP_ENV : $env.APP_ENV"
         env:
           APP_ENV:  ${{ vars.APP_ENV }}
