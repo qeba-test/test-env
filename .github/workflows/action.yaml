@@ -25,7 +25,8 @@ jobs:
           
       - name: Get branch name
         run: |
-         echo "The current branch is ${{ github.ref_name }}"
+         REF_NAME_UPPER=$(echo "${{ github.ref_name }}" | awk '{print toupper($0)}')
+         echo "The current branch is ${{ github.ref_name }} and capital one is ${{ REF_NAME_UPPER}} "
 
        
         
