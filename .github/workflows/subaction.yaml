@@ -16,5 +16,5 @@ jobs:
     steps:
     - name: display variable from main 
       run: |
-      echo "Running second workflow.."
+      echo "Running second workflow"
       

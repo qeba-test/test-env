@@ -35,7 +35,8 @@ jobs:
           echo "The capital branch name is ${{ env.REF_NAME_UPPER }}"
 
   deploy_dev:
+    needs: test_deploy_env
     uses: ./.github/workflows/subaction.yaml
-    with: 
-     environment: dev
-     
+    with:
+      environment: dev
+    secrets: inherit
