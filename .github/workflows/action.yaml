@@ -26,3 +26,8 @@ jobs:
           echo "APP_ENV : $env.APP_ENV"
         env:
           APP_ENV:  ${{ vars.APP_ENV }}
+          
+      - name: Get branch name
+        run: |
+         echo "Branch Name: " ${{ github.event.pull_request.head.ref }}
+        
