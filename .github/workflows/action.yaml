@@ -5,17 +5,15 @@ on:
       - uat
       
       
-jobs:
+jobs:   
   test_deploy_env:
     runs-on: ubuntu-latest
     name: Testing Env value
     environment: staging
+       
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: actions/hello-world-docker-action@v2
-        with:
-          who-to-greet: 'Mona the Octocat'
+      - name: Checkout branch
+      - uses: actions/checkout@v2
       
       - name: Get Environment var value
         run: |
@@ -29,5 +27,7 @@ jobs:
           
       - name: Get branch name
         run: |
-         echo "Branch Name: " ${{ github.event.pull_request.head.ref }}
+         echo "The current branch is ${{ github.ref_name }}"
+
+       
         
