@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Testing Env value
     steps:
       - name: Hello world action step
         id: hello
@@ -11,19 +11,20 @@ jobs:
         with:
           who-to-greet: 'Mona the Octocat'
       
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
-        
-      - name: Set APP_ENV variable
-        if: steps.branch-name.outputs.current_branch == 'main'
+      - name: Set Environment
         run: |
-          echo "export APP_ENV=${{ env.APP_ENV }}" >> $GITHUB_ENV
-      - name: Set APP_ENV variable
-        if: steps.branch-name.outputs.current_branch == 'uat'
-        run: |
-          echo "export APP_ENV=${{ env.APP_ENV }}" >> $GITHUB_ENV
-      
+          case $GITHUB_REF in
+            main)
+              echo "GITHUB_ENV=production" >> $GITHUB_ENV
+              ;;
+            uat)
+              echo "GITHUB_ENV=staging" >> $GITHUB_ENV
+              ;;
+          esac
+      - run: |
+          echo "The environment is $GITHUB_ENV"
+          
+          
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
         
