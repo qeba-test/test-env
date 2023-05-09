@@ -10,18 +10,22 @@ jobs:
         uses: actions/hello-world-docker-action@v2
         with:
           who-to-greet: 'Mona the Octocat'
-      - name: Set environment based on branch
-        id: set_environment
+      
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+      - name: Set APP_ENV variable
+        if: steps.branch-name.outputs.current_branch == 'main'
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "::set-output name=environment::production"
-          elif [[ "${{ github.ref }}" == "refs/heads/uat" ]]; then
-            echo "::set-output name=environment::staging"
-          else
-            echo "::set-output name=environment::development"
-          fi
+          echo "export APP_ENV=${{ vars.APP_ENV }}" >> $GITHUB_ENV
+      - name: Set APP_ENV variable
+        if: steps.branch-name.outputs.current_branch == 'uat'
+        run: |
+          echo "export APP_ENV=${{ vars.APP_ENV }}" >> $GITHUB_ENV
+      
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+        
       - name: get variables value
         run: |
           echo "APP_ENV : $APP_ENV"
