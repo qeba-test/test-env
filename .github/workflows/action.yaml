@@ -18,7 +18,7 @@ jobs:
       
       - name: Get Environment var value
         run: |
-         echo "APP_ENV : ${{ vars.APP_ENV }}"
+         echo "APP_ENV_value : $APP_ENV"
      
       - name: get variables value
         run: |
